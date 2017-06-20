@@ -2,14 +2,14 @@ package me.demo.algorithm.list;
 
 import java.util.Iterator;
 
-public class Stack<T> implements Iterable<T> {
+public class Stack<E> implements Iterable<E> {
 
     private static class Node<T> {
         T item;
         Node<T> next;
     }
 
-    private Node<T> top;
+    private Node<E> top;
 
     private int size;
 
@@ -17,19 +17,19 @@ public class Stack<T> implements Iterable<T> {
 
     }
 
-    public void push(T item) {
-        Node<T> oldTop = top;
+    public void push(E item) {
+        Node<E> oldTop = top;
         top = new Node<>();
         top.item = item;
         top.next = oldTop;
         size++;
     }
 
-    public T pop() {
+    public E pop() {
         if (top == null) {
             throw new RuntimeException("Empty stack");
         }
-        Node<T> oldTop = top;
+        Node<E> oldTop = top;
         top = top.next;
         oldTop.next = null; // help gc
         size--;
@@ -45,12 +45,12 @@ public class Stack<T> implements Iterable<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return new StackIterator();
     }
 
-    private class StackIterator implements Iterator<T> {
-        private Node<T> current = top;
+    private class StackIterator implements Iterator<E> {
+        private Node<E> current = top;
 
         @Override
         public boolean hasNext() {
@@ -58,8 +58,8 @@ public class Stack<T> implements Iterable<T> {
         }
 
         @Override
-        public T next() {
-            T t = current.item;
+        public E next() {
+            E t = current.item;
             current = current.next;
             return t;
         }
