@@ -1,8 +1,7 @@
 package me.demo.algorithm.graph;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
+import me.demo.algorithm.list.Queue;
+import me.demo.algorithm.list.Stack;
 
 /**
  * 有向图中基于深度优先搜索的顶点排序
@@ -18,8 +17,8 @@ public class DepthFirstOrder {
     private Stack<Integer> reversePost; // 所有顶点的逆后续排列
 
     public DepthFirstOrder(Digraph digraph) {
-        pre = new PriorityQueue<>();
-        post = new PriorityQueue<>();
+        pre = new Queue<>();
+        post = new Queue<>();
         reversePost = new Stack<>();
 
         marked = new boolean[digraph.v()];
@@ -32,7 +31,7 @@ public class DepthFirstOrder {
     }
 
     private void dfs(Digraph digraph, int v) {
-        pre.add(v);
+        pre.enqueue(v);
 
         marked[v] = true;
         for (int w : digraph.adj(v)) {
@@ -40,7 +39,7 @@ public class DepthFirstOrder {
                 dfs(digraph, w);
             }
         }
-        post.add(v);
+        post.enqueue(v);
         reversePost.push(v);
     }
 
