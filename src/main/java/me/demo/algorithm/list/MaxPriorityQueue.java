@@ -97,8 +97,6 @@ public class MaxPriorityQueue<E extends Comparable<E>> {
      * 交换 pq 中的 i 和 j
      */
     private void exch(int i, int j) {
-        E t = pq[i];
-        pq[i] = pq[j];
-        pq[j] = t;
+        ArrayUtils.swap(pq, i, j);
     }
 }
