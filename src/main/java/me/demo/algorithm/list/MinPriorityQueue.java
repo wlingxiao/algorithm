@@ -3,21 +3,43 @@ package me.demo.algorithm.list;
 /**
  * 最小值优先队列
  */
-public abstract class MinPriorityQueue<E extends Comparable<E>> {
+public class MinPriorityQueue<E extends Comparable<E>> {
 
     private E[] priorityQueue;
 
     private int N;
 
-    public abstract void insert(E element);
+    public MinPriorityQueue(int size) {
+        priorityQueue = (E[]) new Comparable[N + 1];
+    }
 
-    public abstract E min();
+    public void insert(E element) {
+        priorityQueue[++N] = element;
+        swim(N);
+    }
 
-    public abstract E delMin();
+    public E min() {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("empty MaxPriorityQueue");
+        }
+        return priorityQueue[1];
+    }
 
-    public abstract boolean isEmpty();
+    public E delMin() {
+        E min = priorityQueue[1];
+        ArrayUtils.swap(priorityQueue, 1, N--);
+        priorityQueue[N + 1] = null;
+        sink(1);
+        return min;
+    }
 
-    public abstract int size();
+    public boolean isEmpty() {
+        return N == 0;
+    }
+
+    public int size() {
+        return N;
+    }
 
     /**
      * 上浮
