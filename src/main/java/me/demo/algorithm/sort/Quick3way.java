@@ -23,7 +23,7 @@ public class Quick3way {
             }
         }
         sort(a, lo, gt - 1);
-        sort(a, gt + 1, hi);
+        sort(a, gt  + 1, hi);
     }
 
 }
