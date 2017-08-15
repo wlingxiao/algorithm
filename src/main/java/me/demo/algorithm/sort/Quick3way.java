@@ -14,16 +14,16 @@ public class Quick3way {
         Comparable v = a[lo];
         while (i <= gt) {
             int cmp = a[i].compareTo(v);
-            if (cmp < 0) {
+            if (cmp < 0) { // less
                 exch(a, lt++, i++);
-            } else if (cmp > 0) {
+            } else if (cmp > 0) { // greater
                 exch(a, i, gt--);
-            } else {
+            } else { // equal
                 i++;
             }
         }
-        sort(a, lo, gt - 1);
-        sort(a, gt  + 1, hi);
+        sort(a, lo, lt - 1);
+        sort(a, gt + 1, hi);
     }
 
 }

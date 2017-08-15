@@ -23,15 +23,9 @@ public class QuickSort {
         int j = hi + 1;
         Comparable v = a[lo];
         while (true) {
-            while (less(a[++i], v)) {
-                if (i == hi) {
-                    break;
-                }
+            while (less(a[++i], v) && i <= hi) {
             }
-            while (less(v, a[--j])) {
-                if (j == lo) {
-                    break;
-                }
+            while (less(v, a[--j]) && j >= lo) {
             }
             if (i >= j) {
                 break;
