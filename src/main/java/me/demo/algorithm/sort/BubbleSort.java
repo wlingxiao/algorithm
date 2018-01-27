@@ -1,6 +1,8 @@
 package me.demo.algorithm.sort;
 
-import java.util.Arrays;
+import me.demo.algorithm.Benchmark;
+
+import static me.demo.algorithm.sort.Util.less;
 
 /**
  * 冒泡排序
@@ -12,11 +14,11 @@ import java.util.Arrays;
  */
 public class BubbleSort {
 
-    public static void sort(Integer[] array) {
+    public static void sort(Comparable[] array) {
         int len = array.length;
         for (int i = 0; i < len - 1; i++) { // i 用来指示最后一个元素的位置
             for (int j = 0; j < len - 1 - i; j++) {
-                if (array[j] > array[j + 1]) {
+                if (less(array[j + 1], array[j])) {
                     Util.exch(array, j, j + 1);
                 }
 
@@ -26,10 +28,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-
-        Integer[] i = new Integer[]{1, 3, 5, 6, 7, 8, 4, 76,};
-        sort(i);
-        System.out.println(Arrays.toString(i));
+        Benchmark.start(BubbleSort::sort);
     }
 
 }

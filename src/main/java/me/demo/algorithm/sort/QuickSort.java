@@ -1,12 +1,6 @@
 package me.demo.algorithm.sort;
 
-import lombok.val;
-import org.apache.commons.lang3.RandomUtils;
-import org.apache.commons.lang3.time.StopWatch;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import me.demo.algorithm.Benchmark;
 
 import static me.demo.algorithm.sort.Util.*;
 
@@ -60,10 +54,10 @@ public class QuickSort {
             }
 
             if (i > j) {
-                System.out.println(i + " | " + j);
+                // System.out.println(i + " | " + j);
             }
             if (i == j) {
-                System.out.println("equal " + i + " | " + j);
+                //System.out.println("equal " + i + " | " + j);
             }
             if (i >= j) { // 什么时候 i 会大于 j？在顺序排列数组 [1, 2, 3] 中，i 的初始值为 0 在位置2 处会增加 1 ，而 j 会在位置1 处减小到 0，此时 i > j
                 // 什么时候 i == j？在逆序排列数组 [3， 2， 1] 中，i 的初始值为 0 在位置2 处会增加 1 ，而 j 会在位置1 处减小到 0，此时 i > j
@@ -96,13 +90,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        /*Integer[] a = {2, 1};
-        partition(a, 0, a.length - 1);*/
-
-        Integer[] a = {2, 1};
-        sort(a);
-
-        sorted(a);
+        Benchmark.start(QuickSort::sort);
     }
 
 }
