@@ -53,10 +53,13 @@ public class BinarySearchTreeTest {
         searchTree.delete(1);
         searchTree.delete(3);
 
+        searchTree.inOrderTraversal();
+
         searchTree.delete(7);
         searchTree.delete(6);
         searchTree.delete(8);
 
+        searchTree.inOrderTraversal();
 
         Assert.assertEquals(-1, searchTree.find(5));
         Assert.assertEquals(-1, searchTree.find(2));

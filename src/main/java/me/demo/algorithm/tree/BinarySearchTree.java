@@ -73,5 +73,58 @@ public class BinarySearchTree {
     }
 
     public void delete(int key) {
+        root = delete(root, key);
     }
+
+    public Node delete(Node current, int key) {
+        if (key < current.key) {
+            current.left = delete(current.left, key);
+        } else if (key > current.key) {
+            current.right = delete(current.right, key);
+        } else if (current.left != null && current.right != null) {
+            Node t = findMin(current.right);
+            current.key = t.key;
+            current.value = t.value;
+            current.right = delete(current.right, current.key);
+        } else {
+            Node temp = current;
+            if (current.left == null) {
+                current = current.right;
+            } else if (current.right == null) {
+                current = current.left;
+            }
+            temp = null;
+        }
+        return current;
+    }
+
+    private Node findMin(Node node) {
+        while (node != null) {
+            if (node.left != null) {
+                node = node.left;
+            } else {
+                break;
+            }
+        }
+        return node;
+    }
+
+    public void inOrderTraversal() {
+        inOrderTraversal(root);
+    }
+
+    private void inOrderTraversal(Node current) {
+        if (current == null) {
+            System.out.println("[]");
+            return;
+        }
+        if (current.left != null) {
+            inOrderTraversal(current.left);
+        }
+        System.out.print(" " + current.key + " ");
+        if (current.right != null) {
+            inOrderTraversal(current.right);
+        }
+    }
+
 }
