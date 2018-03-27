@@ -71,4 +71,7 @@ public class BinarySearchTree {
             return -1;
         }
     }
+
+    public void delete(int key) {
+    }
 }
