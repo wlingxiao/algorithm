@@ -75,7 +75,7 @@ public class AvlTree {
         if (current == null) {
             return new Node(key, value);
         }
-        if (value < current.value) {
+        if (key < current.key) {
             current.left = insert(key, value, current.left);
             if (height(current.left) - height(current.right) == 2) {
                 if (key < current.left.key) {
@@ -84,7 +84,7 @@ public class AvlTree {
                     current = leftRightRotate(current);
                 }
             }
-        } else if (value > current.value) {
+        } else if (key > current.key) {
             current.right = insert(key, value, current.right);
             if (height(current.right) - height(current.left) == 2) {
                 if (key > current.right.key) {
