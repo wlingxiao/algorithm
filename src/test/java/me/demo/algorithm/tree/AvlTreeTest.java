@@ -1,6 +1,5 @@
 package me.demo.algorithm.tree;
 
-import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +40,7 @@ public class AvlTreeTest {
 
         assertEquals(-1, avlTree.find(9));
 
-        val treeNodes = avlTree.inOrderTraversal();
+        List<Integer> treeNodes = avlTree.inOrderTraversal();
         assertArrayEquals(treeNodes.toArray(), new Integer[]{1, 2, 3, 5, 6, 7, 8});
     }
 

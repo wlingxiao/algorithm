@@ -1,7 +1,5 @@
 package me.demo.algorithm.tree;
 
-import lombok.val;
-
 /**
  * 二叉查找树
  */
@@ -23,7 +21,7 @@ public class BinarySearchTree {
     private Node root;
 
     public void insert(int key, int value) {
-        val node = new Node(key, value);
+        Node node = new Node(key, value);
         if (root == null) {
             root = node;
             return;

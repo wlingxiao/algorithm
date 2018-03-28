@@ -1,7 +1,5 @@
 package me.demo.algorithm.tree;
 
-import lombok.val;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -194,7 +192,7 @@ public class AvlTree {
     }
 
     public List<Integer> inOrderTraversal() {
-        val ret = new LinkedList<Integer>();
+        List<Integer> ret = new LinkedList<Integer>();
         inOrderTraversal(root, ret);
         return ret;
     }
