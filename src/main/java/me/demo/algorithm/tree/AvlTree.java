@@ -29,7 +29,7 @@ public class AvlTree {
     }
 
     /**
-     * LL
+     * LL,顺时针旋转
      */
     private Node leftLeftRotate(Node k2) {
         Node k1 = k2.left;
@@ -37,12 +37,12 @@ public class AvlTree {
         k1.right = k2;
 
         k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
-        k1.height = Math.max(height(k1.left), k2.height);
+        k1.height = Math.max(height(k1.left), k2.height) + 1;
         return k1;
     }
 
     /**
-     * RR
+     * RR，逆时针旋转
      */
     private Node rightRightRotate(Node k2) {
         Node k1 = k2.right;
@@ -50,16 +50,22 @@ public class AvlTree {
         k1.left = k2;
 
         k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
-        k1.height = Math.max(k2.height, height(k1.right));
+        k1.height = Math.max(k2.height, height(k1.right)) + 1;
 
         return k1;
     }
 
+    /**
+     * 先右旋再左旋
+     */
     private Node leftRightRotate(Node node) {
         node.left = rightRightRotate(node.left);
         return leftLeftRotate(node);
     }
 
+    /**
+     * 先左旋再右旋
+     */
     private Node rightLeftRotate(Node node) {
         node.left = leftLeftRotate(node.left);
         return rightRightRotate(node);
@@ -69,6 +75,13 @@ public class AvlTree {
         root = insert(key, value, root);
     }
 
+    /**
+     * 把必须重新平衡的节点叫做current，以下四种操作会导致不平衡
+     * 1. 对 current 的左儿子的左子树进行了一次插入
+     * 2. 对 current 的左儿子的右子树进行了一次插入
+     * 3. 对 current 的右儿子的右子树进行了一次插入
+     * 4. 对 current 的右儿子的左子树进行了一次插入
+     */
     private Node insert(int key, int value, Node current) {
         if (current == null) {
             return new Node(key, value);
@@ -76,23 +89,23 @@ public class AvlTree {
         if (key < current.key) {
             current.left = insert(key, value, current.left);
             if (height(current.left) - height(current.right) == 2) {
-                if (key < current.left.key) {
+                if (key < current.left.key) { // 对 current 的左儿子的左子树进行了一次插入，进行一次左旋来重新平衡
                     current = leftLeftRotate(current);
-                } else {
+                } else { // 对 current 的左儿子的右子树进行了一次插入，需要先右旋再左旋来重新平衡
                     current = leftRightRotate(current);
                 }
             }
         } else if (key > current.key) {
             current.right = insert(key, value, current.right);
             if (height(current.right) - height(current.left) == 2) {
-                if (key > current.right.key) {
+                if (key > current.right.key) { // 对 current 的右儿子的右子树进行了一次插入，需要一次右旋来重新平衡
                     current = rightRightRotate(current);
                 } else {
-                    current = rightLeftRotate(current);
+                    current = rightLeftRotate(current); // 对 current 的右儿子的左子树进行了一次插入，需要先左旋再右旋来重新平衡
                 }
             }
         } else {
-            return null;
+            current.value = value;
         }
 
         current.height = Math.max(height(current.left), height(current.right)) + 1;
