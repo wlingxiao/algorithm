@@ -123,6 +123,76 @@ public class AvlTree {
         }
     }
 
+    public void delete(int key) {
+        root = delete(key, root);
+    }
+
+    public Node delete(int key, Node current) {
+        if (key < current.key) {
+            current.left = delete(key, current.left);
+            if (height(current.right) - height(current.left) == 2) {
+                Node t = current.right;
+                if (height(t.left) > height(t.right)) {
+                    current = rightLeftRotate(current);
+                } else {
+                    current = rightRightRotate(current);
+                }
+            }
+        } else if (key > current.key) {
+            current.right = delete(key, current.right);
+            if (height(current.left) - height(current.right) == 2) {
+                Node t = current.left;
+                if (height(t.right) > height(t.left)) {
+                    current = leftRightRotate(current);
+                } else {
+                    current = leftLeftRotate(current);
+                }
+            }
+        } else {
+            if (current.left != null && current.right != null) {
+                if (height(current.left) > height(current.right)) {
+                    Node t = findMax(current.left);
+                    current.key = t.key;
+                    current.value = t.value;
+                    current.left = delete(current.key, current.left);
+                } else {
+                    Node t = findMin(current.right);
+                    current.key = t.key;
+                    current.value = t.value;
+                    current.right = delete(current.key, current.right);
+                }
+            } else {
+                Node t = current;
+                current = (current.left != null) ? current.left : current.right;
+                t = null;
+            }
+        }
+
+        return current;
+    }
+
+    private Node findMin(Node node) {
+        while (node != null) {
+            if (node.left != null) {
+                node = node.left;
+            } else {
+                break;
+            }
+        }
+        return node;
+    }
+
+    private Node findMax(Node node) {
+        while (node != null) {
+            if (node.right != null) {
+                node = node.right;
+            } else {
+                break;
+            }
+        }
+        return node;
+    }
+
     public List<Integer> inOrderTraversal() {
         val ret = new LinkedList<Integer>();
         inOrderTraversal(root, ret);
@@ -130,6 +200,9 @@ public class AvlTree {
     }
 
     private void inOrderTraversal(Node current, List<Integer> out) {
+        if (current == null) {
+            return;
+        }
         if (current.left != null) {
             inOrderTraversal(current.left, out);
         }
