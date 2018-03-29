@@ -1,9 +1,13 @@
 package me.demo.algorithm.tree;
 
+import me.demo.algorithm.list.Stack;
+
+import java.util.Iterator;
+
 /**
  * 二叉查找树
  */
-public class BinarySearchTree {
+public class BinarySearchTree implements Iterable<Integer> {
 
     private static class Node {
         int key;
@@ -125,4 +129,40 @@ public class BinarySearchTree {
         }
     }
 
+    @Override
+    public Iterator<Integer> iterator() {
+        return new BinarySearchTreeIterator();
+    }
+
+    private class BinarySearchTreeIterator implements Iterator<Integer> {
+
+        private Stack<Node> stack = new Stack<>();
+
+        public BinarySearchTreeIterator() {
+            Node current = root;
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public Integer next() {
+            Node node = stack.pop();
+            Integer ret = node.key;
+            if (node.right != null) {
+                node = node.right;
+                while (node != null) {
+                    stack.push(node);
+                    node = node.left;
+                }
+            }
+            return ret;
+        }
+    }
 }

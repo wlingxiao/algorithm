@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 public class BinarySearchTreeTest {
 
     private BinarySearchTree searchTree;
@@ -69,6 +71,24 @@ public class BinarySearchTreeTest {
         Assert.assertEquals(-1, searchTree.find(7));
         Assert.assertEquals(-1, searchTree.find(6));
         Assert.assertEquals(-1, searchTree.find(8));
+    }
+
+    @Test
+    public void testIterator() {
+        searchTree.insert(5, 50);
+        searchTree.insert(2, 20);
+        searchTree.insert(1, 10);
+        searchTree.insert(3, 30);
+
+        Iterator<Integer> it = searchTree.iterator();
+        Assert.assertTrue(it.hasNext());
+
+        Assert.assertEquals(new Integer("1"), it.next());
+        Assert.assertEquals(new Integer("2"), it.next());
+        Assert.assertEquals(new Integer("3"), it.next());
+        Assert.assertEquals(new Integer("5"), it.next());
+        Assert.assertFalse(it.hasNext());
+
     }
 
 }
