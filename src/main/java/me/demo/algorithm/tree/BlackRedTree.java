@@ -13,4 +13,136 @@ package me.demo.algorithm.tree;
  */
 public class BlackRedTree {
 
+    private static class Node {
+        boolean color;
+        int key;
+        Node left;
+        Node right;
+        Node parent;
+
+        public Node(boolean color, int key) {
+            this.color = color;
+            this.key = key;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("[key: %s color: %s]", key, color ? "Red" : "Black");
+        }
+    }
+
+    private final static boolean RED = false;
+
+    private final static boolean BLACK = true;
+
+    private Node root;
+
+    private void leftRotate(Node current) {
+
+    }
+
+    private void rightRotate(Node current) {
+
+    }
+
+    public void insert(int key) {
+        insert(new Node(BLACK, key));
+    }
+
+    private Node parentOf(Node node) {
+        return node != null ? node.parent : null;
+    }
+
+    private boolean isRed(Node node) {
+        return node != null && node.color == RED;
+    }
+
+    private boolean isBlack(Node node) {
+        return !isRed(node);
+    }
+
+    private void setRed(Node node) {
+        if (node != null) {
+            node.color = RED;
+        }
+    }
+
+    private void setBlack(Node node) {
+        if (node != null) {
+            node.color = BLACK;
+        }
+    }
+
+    private void insert(Node node) {
+        Node current = null;
+        Node x = root;
+        while (x != null) {
+            current = x;
+            if (node.key > x.key) {
+                x = x.left;
+            } else {
+                x = x.right;
+            }
+        }
+        node.parent = current;
+        if (current != null) {
+            if (node.key > current.key) {
+                current.right = node;
+            } else {
+                current.left = node;
+            }
+        }
+        insertFixUp(node);
+    }
+
+    private void insertFixUp(Node node) {
+        Node parent;
+        Node gparent;
+
+        while ((parent = parentOf(node)) != null && isRed(node)) {
+            gparent = parentOf(parent);
+
+            if (parent == gparent.left) {
+                Node uncle = gparent.right;
+                if (uncle != null && isRed(uncle)) {
+                    setBlack(uncle);
+                    setBlack(parent);
+                    setRed(gparent);
+                    node = gparent;
+                    continue;
+                }
+
+                if (parent.right == node) {
+                    leftRotate(parent);
+                    Node t = parent;
+                    parent = node;
+                    node = t;
+                }
+
+                setBlack(parent);
+                setRed(gparent);
+                rightRotate(gparent);
+            } else {
+                Node uncle = gparent.left;
+                if (uncle != null && isRed(uncle)) {
+                    setBlack(uncle);
+                    setBlack(parent);
+                    setRed(gparent);
+                    node = gparent;
+                    continue;
+                }
+                if (parent.left == node) {
+                    rightRotate(parent);
+                    Node t = parent;
+                    parent = node;
+                    node = t;
+                }
+
+                setBlack(parent);
+                setRed(gparent);
+                leftRotate(gparent);
+            }
+        }
+        setBlack(root);
+    }
 }
