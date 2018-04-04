@@ -99,7 +99,7 @@ public class BlackRedTree {
         Node parent;
         Node gparent;
 
-        while ((parent = parentOf(node)) != null && isRed(node)) {
+        while ((parent = parentOf(node)) != null && isRed(parent)) {
             gparent = parentOf(parent);
 
             if (parent == gparent.left) {
