@@ -53,6 +53,20 @@ public class BinarySearchTree implements Iterable<Integer> {
         }
     }
 
+    private Node insertRecursive(Node current, int key, int value) {
+        if (current == null) {
+            return new Node(key, value);
+        }
+        if (key > current.key) {
+            current.right = insertRecursive(current.right, key, value);
+        } else if (key < current.key) {
+            current.left = insertRecursive(current.left, key, value);
+        } else {
+            current.value = value;
+        }
+        return current;
+    }
+
     public int find(int key) {
         if (root == null) {
             return -1;
