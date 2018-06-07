@@ -93,23 +93,27 @@ public class BinarySearchTree implements Iterable<Integer> {
     }
 
     public Node delete(Node current, int key) {
+        if (current == null) {
+            throw new IllegalArgumentException("Tree is empty");
+        }
         if (key < current.key) {
             current.left = delete(current.left, key);
         } else if (key > current.key) {
             current.right = delete(current.right, key);
-        } else if (current.left != null && current.right != null) {
+        } else if (current.left != null && current.right != null) { // Tow children
             Node t = findMin(current.right);
             current.key = t.key;
             current.value = t.value;
             current.right = delete(current.right, current.key);
-        } else {
+        } else { // one or zero children
             Node temp = current;
-            if (current.left == null) {
+            if (current.left == null) { // also handle 0 children
                 current = current.right;
+                temp.right = null; // help gc
             } else if (current.right == null) {
                 current = current.left;
+                temp.left = null; // help gc
             }
-            temp = null;
         }
         return current;
     }

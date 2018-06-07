@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
+import static org.junit.Assert.assertEquals;
+
 public class BinarySearchTreeTest {
 
     private BinarySearchTree searchTree;
@@ -27,16 +29,16 @@ public class BinarySearchTreeTest {
         searchTree.insert(6, 60);
         searchTree.insert(8, 80);
 
-        Assert.assertEquals(50, searchTree.find(5));
-        Assert.assertEquals(20, searchTree.find(2));
-        Assert.assertEquals(10, searchTree.find(1));
-        Assert.assertEquals(30, searchTree.find(3));
+        assertEquals(50, searchTree.find(5));
+        assertEquals(20, searchTree.find(2));
+        assertEquals(10, searchTree.find(1));
+        assertEquals(30, searchTree.find(3));
 
-        Assert.assertEquals(70, searchTree.find(7));
-        Assert.assertEquals(60, searchTree.find(6));
-        Assert.assertEquals(80, searchTree.find(8));
+        assertEquals(70, searchTree.find(7));
+        assertEquals(60, searchTree.find(6));
+        assertEquals(80, searchTree.find(8));
 
-        Assert.assertEquals(-1, searchTree.find(9));
+        assertEquals(-1, searchTree.find(9));
     }
 
     @Test
@@ -63,14 +65,23 @@ public class BinarySearchTreeTest {
 
         searchTree.inOrderTraversal();
 
-        Assert.assertEquals(-1, searchTree.find(5));
-        Assert.assertEquals(-1, searchTree.find(2));
-        Assert.assertEquals(-1, searchTree.find(1));
-        Assert.assertEquals(-1, searchTree.find(3));
+        assertEquals(-1, searchTree.find(5));
+        assertEquals(-1, searchTree.find(2));
+        assertEquals(-1, searchTree.find(1));
+        assertEquals(-1, searchTree.find(3));
 
-        Assert.assertEquals(-1, searchTree.find(7));
-        Assert.assertEquals(-1, searchTree.find(6));
-        Assert.assertEquals(-1, searchTree.find(8));
+        assertEquals(-1, searchTree.find(7));
+        assertEquals(-1, searchTree.find(6));
+        assertEquals(-1, searchTree.find(8));
+    }
+
+    @Test
+    public void testDeleteOneNodeTree() {
+
+        searchTree.insert(1, 10);
+        searchTree.delete(1);
+
+        assertEquals(searchTree.find(1), -1);
     }
 
     @Test
@@ -83,10 +94,10 @@ public class BinarySearchTreeTest {
         Iterator<Integer> it = searchTree.iterator();
         Assert.assertTrue(it.hasNext());
 
-        Assert.assertEquals(new Integer("1"), it.next());
-        Assert.assertEquals(new Integer("2"), it.next());
-        Assert.assertEquals(new Integer("3"), it.next());
-        Assert.assertEquals(new Integer("5"), it.next());
+        assertEquals(new Integer("1"), it.next());
+        assertEquals(new Integer("2"), it.next());
+        assertEquals(new Integer("3"), it.next());
+        assertEquals(new Integer("5"), it.next());
         Assert.assertFalse(it.hasNext());
 
     }
