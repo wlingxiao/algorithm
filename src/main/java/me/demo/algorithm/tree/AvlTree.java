@@ -36,6 +36,7 @@ public class AvlTree {
         k2.left = k1.right;
         k1.right = k2;
 
+        // 先调整可k2得高度，再调整k1的高度
         k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
         k1.height = Math.max(height(k1.left), k2.height) + 1;
         return k1;
