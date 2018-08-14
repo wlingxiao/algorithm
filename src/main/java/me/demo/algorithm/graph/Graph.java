@@ -1,8 +1,13 @@
 package me.demo.algorithm.graph;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
+/**
+ * 邻接表表示的无向图
+ */
 public class Graph {
 
     /**
@@ -18,26 +23,22 @@ public class Graph {
     /**
      * 邻接表
      */
-    private LinkedList<Integer>[] adj;
+    private final List<List<Integer>> adj;
 
     /**
      * 创建一个含有 v 个顶点但是不含边的图
-     *
-     * @param v
      */
     public Graph(int v) {
         this.v = v;
         e = 0;
-        adj = (LinkedList<Integer>[]) new LinkedList[v];
+        adj = new ArrayList<>(v);
         for (int i = 0; i < v; i++) {
-            adj[i] = new LinkedList<Integer>();
+            adj.set(i, new LinkedList<>());
         }
     }
 
     /**
      * 边数
-     *
-     * @return
      */
     int v() {
         return v;
@@ -45,8 +46,6 @@ public class Graph {
 
     /**
      * 顶点数
-     *
-     * @return
      */
     int e() {
         return e;
@@ -54,23 +53,17 @@ public class Graph {
 
     /**
      * 添加一条边 v-w
-     *
-     * @param v
-     * @param w
      */
-    void addEdge(int v, int w) {
-        adj[v].add(w);
-        adj[w].add(v);
+    public void addEdge(int v, int w) {
+        adj.get(v).add(w);
+        adj.get(w).add(v);
         e++;
     }
 
     /**
      * 与 v 相邻的所有边
-     *
-     * @param v
-     * @return
      */
-    Iterable<Integer> adj(int v) {
-        return adj[v];
+    public Iterable<Integer> adj(int v) {
+        return adj.get(v);
     }
 }
