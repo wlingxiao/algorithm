@@ -2,13 +2,11 @@ package me.demo.algorithm.sort;
 
 import org.apache.commons.lang3.RandomUtils;
 
-import java.util.ArrayList;
-
 public final class Util {
     private Util() {
     }
 
-    public static boolean less(Comparable v, Comparable w) {
+    public static <T extends Comparable<T>> boolean less(T v, T w) {
         return v.compareTo(w) < 0;
     }
 
