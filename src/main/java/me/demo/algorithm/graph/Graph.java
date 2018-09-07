@@ -37,14 +37,14 @@ public class Graph {
     }
 
     /**
-     * 边数
+     * 顶点数
      */
     int v() {
         return v;
     }
 
     /**
-     * 顶点数
+     * 边数
      */
     int e() {
         return e;
