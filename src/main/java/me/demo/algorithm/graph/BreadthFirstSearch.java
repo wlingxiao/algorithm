@@ -39,6 +39,6 @@ public class BreadthFirstSearch implements Search {
 
     @Override
     public int count() {
-        return 0;
+        return count;
     }
 }

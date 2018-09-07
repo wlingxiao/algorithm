@@ -11,7 +11,7 @@ public class DepthFirstSearchTest {
         /**
          * 算法第四版 340 页，图 4.1.13 表示的无向图
          */
-        Graph graph = new Graph(6);
+        Graph graph = new Graph(8);
         graph.addEdge(0, 2);
         graph.addEdge(0, 1);
         graph.addEdge(0, 5);
@@ -23,6 +23,8 @@ public class DepthFirstSearchTest {
         graph.addEdge(3, 4);
         graph.addEdge(3, 5);
 
+        graph.addEdge(6, 7);
+
         DepthFirstSearch dfs = new DepthFirstSearch(graph, 0);
 
         assertEquals(6, dfs.count());
@@ -31,6 +33,9 @@ public class DepthFirstSearchTest {
         assertTrue(dfs.marked(3));
         assertTrue(dfs.marked(4));
         assertTrue(dfs.marked(5));
+
+        assertFalse(dfs.marked(6));
+        assertFalse(dfs.marked(7));
     }
 
 }
