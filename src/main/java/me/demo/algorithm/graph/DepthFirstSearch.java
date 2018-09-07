@@ -1,19 +1,17 @@
 package me.demo.algorithm.graph;
 
+/**
+ * 深度优先搜索
+ */
 public class DepthFirstSearch implements Search {
 
     private boolean[] marked;
 
     private int count;
 
-    /**
-     * 找到和起点 s 连通的所有顶点
-     *
-     * @param graph
-     * @param s
-     */
     public DepthFirstSearch(Graph graph, int s) {
         marked = new boolean[graph.v()];
+        dfs(graph, s);
     }
 
     private void dfs(Graph graph, int v) {
@@ -26,10 +24,16 @@ public class DepthFirstSearch implements Search {
         }
     }
 
+    /**
+     * 检查顶点 v 是否与 s 连通
+     */
     public boolean marked(int v) {
         return marked[v];
     }
 
+    /**
+     * 获取与 s 连通的顶点总数，包括点 s
+     */
     public int count() {
         return count;
     }
