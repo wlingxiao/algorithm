@@ -2,7 +2,6 @@ package me.demo.algorithm.graph;
 
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,7 +32,7 @@ public class Graph {
         e = 0;
         adj = new ArrayList<>(v);
         for (int i = 0; i < v; i++) {
-            adj.set(i, new LinkedList<>());
+            adj.add(new ArrayList<>());
         }
     }
 
@@ -52,7 +51,7 @@ public class Graph {
     }
 
     /**
-     * 添加一条边 v-w
+     * 添加一条无向边 v-w
      */
     public void addEdge(int v, int w) {
         adj.get(v).add(w);
@@ -61,7 +60,7 @@ public class Graph {
     }
 
     /**
-     * 与 v 相邻的所有边
+     * 与 v 相邻的所有点
      */
     public Iterable<Integer> adj(int v) {
         return adj.get(v);
