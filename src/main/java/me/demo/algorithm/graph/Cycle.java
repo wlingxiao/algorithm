@@ -23,7 +23,7 @@ public class Cycle {
         for (int w : graph.adj(v)) {
             if (!marked[w]) {
                 dfs(graph, w, v);
-            } else if (w != u) {
+            } else if (w != u) { // 如果某个顶点与 v 连通，而且已被访问，还不是 v 的“父顶点”，则存在环
                 hasCycle = true;
             }
         }
