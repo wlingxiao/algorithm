@@ -25,6 +25,7 @@ public class BreadthFirstSearch implements Search {
             int v = queue.dequeue();
             for (int w : graph.adj(v)) {
                 if (!marked[w]) {
+                    count++;
                     marked[w] = true;
                     queue.enqueue(w);
                 }

@@ -11,7 +11,7 @@ public class BreadthFirstSearchTest {
     public void testDepthFirstSearch() {
         Graph graph = GraphTestUtil.createGraph();
 
-        DepthFirstSearch dfs = new DepthFirstSearch(graph, 0);
+        BreadthFirstSearch dfs = new BreadthFirstSearch(graph, 0);
 
         assertEquals(6, dfs.count());
         assertTrue(dfs.marked(1));
