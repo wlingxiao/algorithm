@@ -3,6 +3,7 @@ package algorithm.list;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StackTest {
@@ -20,13 +21,13 @@ public class StackTest {
         stack.push(2);
         stack.push(3);
 
-        assertTrue(stack.size() == 3);
+        assertEquals(3, stack.size());
 
-        assertTrue(3 == stack.pop());
-        assertTrue(2 == stack.pop());
-        assertTrue(1 == stack.pop());
+        assertEquals(3, (int) stack.pop());
+        assertEquals(2, (int) stack.pop());
+        assertEquals(1, (int) stack.pop());
 
-        assertTrue(stack.size() == 0);
+        assertEquals(0, stack.size());
         assertTrue(stack.isEmpty());
     }
 

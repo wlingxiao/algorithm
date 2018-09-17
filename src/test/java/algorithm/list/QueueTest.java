@@ -3,6 +3,7 @@ package algorithm.list;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class QueueTest {
@@ -19,13 +20,13 @@ public class QueueTest {
         queue.enqueue(2);
         queue.enqueue(3);
 
-        assertTrue(queue.size() == 3);
+        assertEquals(3, queue.size());
 
-        assertTrue(1 == queue.dequeue());
-        assertTrue(2 == queue.dequeue());
-        assertTrue(3 == queue.dequeue());
+        assertEquals(1, (int) queue.dequeue());
+        assertEquals(2, (int) queue.dequeue());
+        assertEquals(3, (int) queue.dequeue());
 
-        assertTrue(queue.size() == 0);
+        assertEquals(0, queue.size());
         assertTrue(queue.isEmpty());
     }
 
