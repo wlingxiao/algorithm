@@ -15,9 +15,9 @@ import static algorithm.sort.Util.less;
  * 3. 针对所有元素重复以上操作，除了最后一个
  * 4. 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较
  */
-public class BubbleSort {
+public class BubbleSort implements Sort {
 
-    public static void sort(Comparable[] array) {
+    public void sort(Comparable[] array) {
         int len = array.length;
         for (int i = 0; i < len - 1; i++) { // i 用来指示最后一个元素的位置
             for (int j = 0; j < len - 1 - i; j++) {
@@ -29,9 +29,4 @@ public class BubbleSort {
 
         }
     }
-
-    public static void main(String[] args) {
-        Benchmark.start(BubbleSort::sort);
-    }
-
 }

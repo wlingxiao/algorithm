@@ -25,7 +25,7 @@ public class SortBenchmark {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.SECONDS)
     public void testBubbleSort(Data data) {
-        BubbleSort.sort(data.integers);
+        new BubbleSort().sort(data.integers);
     }
 
     @Benchmark
@@ -34,7 +34,7 @@ public class SortBenchmark {
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Measurement(iterations = 5, time = 5)
     public void testQuickSort(Data data) {
-        QuickSort.sort(data.integers);
+        new QuickSort().sort(data.integers);
     }
 
     @Benchmark
