@@ -9,9 +9,6 @@ public class DirectedDFS {
 
     /**
      * 在 digraph 中找到从 s 可达的所有顶点
-     *
-     * @param digraph
-     * @param s
      */
     public DirectedDFS(Digraph digraph, int s) {
         marked = new boolean[digraph.v()];
@@ -20,9 +17,6 @@ public class DirectedDFS {
 
     /**
      * 在 digraph 中找到从 sources 中的所有顶点可达的所有顶点
-     *
-     * @param digraph
-     * @param sources
      */
     public DirectedDFS(Digraph digraph, Iterable<Integer> sources) {
         marked = new boolean[digraph.v()];
@@ -44,11 +38,8 @@ public class DirectedDFS {
 
     /**
      * v 是可达的吗？
-     *
-     * @param v
-     * @return
      */
-    boolean marked(int v) {
+    public boolean marked(int v) {
         return marked[v];
     }
 }
