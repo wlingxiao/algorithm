@@ -17,6 +17,13 @@ public class Stack<E> implements Iterable<E> {
 
     }
 
+    public E top() {
+        if (top == null) {
+            throw new RuntimeException("Empty stack");
+        }
+        return top.item;
+    }
+
     public void push(E item) {
         Node<E> oldTop = top;
         top = new Node<>();
